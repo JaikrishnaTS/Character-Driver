@@ -1,0 +1,25 @@
+Advanced Systems Programming Homework 4
+
+Jaikrishna Tanjore Sukumar
+
+Description:
+	The attached files implement a character device driver which supports many number of devices (as defined by NUM_DEVICES module parameter) and the following functions
+
+	read, write, lseek, ioctl
+
+	ioctl can be used to change the direction of data access to regular(0) or reverse(1)
+
+	The attached example test application testmod.c accesses the device (device path as the first argument) and can perform all the functions on the device. 
+
+	The simple test can be made by loading the driver and then using echo and cat.
+
+	For example,
+		$ make
+		$ sudo insmod char_driver.ko
+		$ sudo -s
+		# echo "hello world" > /dev/mycdrv0
+		# cat /dev/mycdrv0
+
+	For advanced usage such as with ioctl, look at the example user application testmod.c and the output log output.txt
+
+	For specifying a custom size for device use the module parameter RAMDISK_SIZE

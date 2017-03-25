@@ -1,0 +1,154 @@
+jk@jk-VirtualBox:~/hw4$ sudo ./testmod.out /dev/mycdrv0
+Enter operation : w
+Enter data :
+the quick brown fox jumps over the lazy dog
+Wrote 43 bytes
+
+// seeking required before reading to update the file pointer
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 0
+Enter pos : 0
+Returned 0
+
+
+Enter operation : r
+Read data :
+the quick brown fox jumps over the lazy dog
+
+// seek to the last character that is filled in 
+Enter operation : s 
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 1
+Enter pos : -1
+Returned 42
+
+
+// regular read gives only the last character
+Enter operation : r
+Read data :
+g
+
+// seek to last character that is filled 
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 1
+Enter pos : -1
+Returned 42
+
+
+Enter operation : i
+Enter new direction : 1
+Returned 0
+
+
+// reverse read prints the entire string in reverse
+Enter operation : r
+Read data :
+god yzal eht revo spmuj xof nworb kciuq eht
+
+// seek to a middle position and write data in reverse direction 
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 0
+Enter pos : 20
+Returned 20
+
+
+Enter operation : w
+Enter data :
+some new data
+Wrote 13 bytes
+
+
+// seek to last again and read
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 0
+Enter pos : 42
+Returned 42
+
+// notice data written in reverse is displayed without reversing (while reading in reverse)
+Enter operation : r
+Read data :
+god yzal eht revo spmusome new dataciuq eht
+
+// all data has been read
+Enter operation : r
+Read data :
+
+// writing reverse beyond the start of buffer
+Enter operation : w
+Enter data :
+linux device driver
+Wrote -1 bytes
+
+
+// reading reverse beyond start of buffer
+Enter operation : r
+Read data :
+
+
+// seek to last and write in reverse
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 0
+Enter pos : 40
+Returned 40
+
+
+Enter operation : w
+Enter data :
+linux device drivers
+Wrote 20 bytes
+
+
+// read from the point where writing is complete
+Enter operation : r
+Read data :
+some new dataciuq eht
+
+// seek to last
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 0
+Enter pos : 42
+Returned 42
+
+
+// read data in reverse
+Enter operation : r
+Read data :
+golinux device driverssome new dataciuq eht
+
+Enter operation : e
+
+// re-open and read in regular mode
+jk@jk-VirtualBox:~/hw4$ sudo ./testmod.out /dev/mycdrv0
+Enter operation : i
+Enter new direction : 0
+Returned 1
+
+
+Enter operation : r
+Read data :
+the quicatad wen emossrevird ecived xunilog
+
+// append some more data
+Enter operation : w
+Enter data :
+systems programming
+Wrote 19 bytes
+
+
+Enter operation : r
+Read data :
+
+
+Enter operation : s
+Enter SEEK_SET, SEEK_CUR, SEEK_END : 0
+Enter pos : 0
+Returned 0
+
+
+Enter operation : r
+Read data :
+the quicatad wen emossrevird ecived xunilogsystems programming
+
+Enter operation : e
+
+jk@jk-VirtualBox:~/hw4$ 
+
